@@ -4,6 +4,7 @@ Listen to and control the office radio in the Workadventure instance
 
 ## API
 ```
+
 GET /stream/<id> -> gibt die radio website für den stream zurück
 
 GET /stream/<id>/url -> 307 redirect zu aktueller stream-url
@@ -21,6 +22,6 @@ POST /stream/<id>/stop -> macht das radio aus
 POST /stream/<id>/url , data: { "url": stream-url } -> setzt den stream auf url (expert mode)
 
 GET / -> gibt die website mit der übersicht aller streams
-
-# Future (or never)
+GET /streams/json -> gibt alle streams mit status aus
+GET /radios/json -> gibt alle verfügbaren konfigurierten Radios aus
 ```

@@ -128,5 +128,15 @@ def index():
             streams[ident]["status"] = details_mpd(stream)
     return render_template("overview.html",streams=streams)
 
+@app.route('/streams/json')
+def all_streams_json():
+    for ident,stream in streams.items():
+            streams[ident]["status"] = details_mpd(stream)
+    return jsonify(streams)
+
+@app.route('/radios/json')
+def all_radios_json():
+    return jsonify(radios)
+
 if __name__ == "__main__":
     app.run(debug=True,host="0.0.0.0")
