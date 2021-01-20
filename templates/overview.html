@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Office Radio{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <h3>List of available Radio Streams</h3>
+  <ul>
+  {% for id,stream in streams.items() %}
+  <li><a href="/stream/{{id}}">{{stream.name}}</a>
+    {% if stream.status.state == 'play' %}
+    playing {{stream.status.title }} on <a href="{{stream.status.file}}">{{stream.status.name.split(":")[0] }}</a>
+    {% elif stream.status.state == 'stop' %}
+    currently stopped
+    {% else %}
+      {{stream.status.state}}
+    {% endif %}
+  </li>
+  {% endfor %}
+  </ul>
+{% endblock %}

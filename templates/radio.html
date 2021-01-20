@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Radio {{stream.name}}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    {% if stream.status.state == 'play' %}
+    Playing <b>{{stream.status.title }}</b> on <a href="{{stream.status.file}}">{{stream.status.name.split(":")[0] }}</a>
+    {% elif stream.status.state == 'stop' %}
+    currently stopped
+    {% else %}
+      {{stream.status.state}}
+    {% endif %}
+{% endblock %}
