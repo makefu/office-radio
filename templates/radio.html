@@ -6,10 +6,27 @@
 
 {% block content %}
     {% if stream.status.state == 'play' %}
-    Playing <b>{{stream.status.title }}</b> on <a href="{{stream.status.file}}">{{stream.status.name.split(":")[0] }}</a>
+    Playing <b>{{stream.status.title or 'No Song Title'}}</b> on <a href="{{stream.status.file}}">
+      {%if stream.status.name %}{{stream.status.name.split(":")[0] }}
+      {%else %}Unknown Stream Name{% endif %}
+    </a>
     {% elif stream.status.state == 'stop' %}
     currently stopped
     {% else %}
       {{stream.status.state}}
-    {% endif %}
+      {% endif %} - {{stream.status.listeners}} listener
+    <h2>Choose a Radio Station</h2>
+    {% for radioid,radio in radios.items() %}
+    <form method=post class=blockBtn action=/stream/{{streamid}}/play/{{radioid}}>
+      <button type=submit style='box-sizing: border-box'>Play {{radio.name}}</button>
+    </form>
+    {% endfor %}
+    <form method=post action="/stream/{{streamid}}/stop">
+      <button style=background:red type=submit>Stop Radio</button>
+    </form>
+
+    <h2>Tune in:</h2>
+    <audio controls>
+      <source src="{{stream.streamurl}}">
+    </audio>
 {% endblock %}

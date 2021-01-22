@@ -6,6 +6,7 @@ pkgs.mkShell {
       flask
       flask-bootstrap
       authlib
+      psutil
       mpd2
     ]))
   ];
