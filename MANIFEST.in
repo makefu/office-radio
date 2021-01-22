@@ -1,0 +1,3 @@
+graft officeradio/static
+graft officeradio/templates
+global-exclude *.pyc

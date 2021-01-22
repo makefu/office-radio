@@ -1,13 +1,14 @@
 { pkgs ? import <nixpkgs> {} }:
-
-pkgs.mkShell {
-  buildInputs = [
-    (pkgs.python3.withPackages (p: with p;[
-      flask
-      psutil
-      mpd2
-      requests
-    ]))
+with pkgs.python3.pkgs;
+buildPythonPackage {
+  name = "env";
+  src = ./.;
+  propagatedBuildInputs = [
+    requests
+    flask
+    mpd2
+    psutil
   ];
+  checkInputs = [ black jq ];
 }
 
