@@ -180,6 +180,7 @@ def custom_stream(streamid):
 
 
 @app.route("/")
+@app.route("/streams")
 def index():
     for ident, stream in streams.items():
         streams[ident]["status"] = details_mpd(stream)
