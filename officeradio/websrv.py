@@ -3,10 +3,13 @@ from functools import wraps
 import mpd
 import psutil
 from time import sleep
+import sys
 
 app = Flask(__name__)
 # app.config.from_pyfile('config.py')
-hostname = "http://radio.jobby"
+
+# TODO: load streams configuration from environment file
+hostname = "http://work.search4ce.app.de.corp.thales"
 # our local mpd streams on the map
 
 streams = {
@@ -14,19 +17,19 @@ streams = {
         "name": "Cybertisch 1",
         "host": "localhost",
         "port": 6600,
-        "streamurl": "http://localhost:8000",
+        "streamurl": f"{hostname}:28000",
     },
     "cybertisch2": {
         "name": "Cybertisch 2",
         "host": "localhost",
         "port": 6601,
-        "streamurl": "http://localhost:28001",
+        "streamurl": f"{hostname}:28001",
     },
     "cyberklo": {
         "name": "Cyberklo",
         "host": "localhost",
         "port": 6602,
-        "streamurl": "http://localhost:28002",
+        "streamurl": f"{hostname}:28002",
     },
 }
 radios = {
